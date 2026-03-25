@@ -31,4 +31,8 @@ jobs:
         git lfs pull
     - name: Build
       run: |
+        PowerShell "(Get-Content global.json).Replace('latestMajor', 'disable') | Set-Content global.json"
+        PowerShell "(Get-Content Source/Tools/Flax.Build/global.json).Replace('latestMajor', 'disable') | Set-Content Source/Tools/Flax.Build/global.json"
+        PowerShell "(Get-Content Source/Tools/Flax.Build/Flax.Build.csproj).Replace('LatestMajor', 'Disable') | Set-Content Source/Tools/Flax.Build/Flax.Build.csproj"
+        type global.json
         .\Development\Scripts\Windows\CallBuildTool.bat -build -log -printSDKs -dotnet=8 -arch=x64 -platform=Windows -configuration=Release -buildtargets=FlaxGame
