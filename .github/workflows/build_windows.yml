@@ -31,6 +31,4 @@ jobs:
         git lfs pull
     - name: Build
       run: |
-        PowerShell "(Get-Content global.json).Replace('latestMajor', 'latestMinor') | Set-Content global.json"
-        PowerShell "(Get-Content Source/Tools/Flax.Build/Flax.Build.csproj).Replace('LatestMajor', 'LatestMinor') | Set-Content Source/Tools/Flax.Build/Flax.Build.csproj"
         .\Development\Scripts\Windows\CallBuildTool.bat -build -log -printSDKs -dotnet=8 -arch=x64 -platform=Windows -configuration=Release -buildtargets=FlaxGame
